@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import the module as 'styles'
-import styles from "../../Styles/onboarding.module.css";
+import styles from "../Styles/onboarding.module.css";
 
 const Onboarding = () => {
   const [isLoading, setIsLoading] = useState(true);
