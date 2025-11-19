@@ -1,5 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Outfit:wght@100..900&display=swap');
+/* 1. Fonts & Tailwind Imports */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Jaro:opsz@6..72&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
+@import "tailwindcss";
+
+/* 2. Tailwind Custom Dark Mode Variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 3. Global Resets & Your Custom Styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,26 +20,34 @@
 }
 
 :root {
-  --gradient: linear-gradient(270deg, var(--primary-color) 20%, #FF26B9 99.99%, #FE34B9 100%);
+  /* Colors */
   --primary-color: #7761f8;
   --secondary-color: #f5f6f7;
   --light-bg: #fefefe;
   --medium-bg: #f5f6f7;
   --font-color: #4a4a4a;
   --font-color-light: #777;
-  --border: #eee;
-  --border-focus: #ddd;
-  --shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
   --white: #fefefe;
-  --font-1: "Outfit", system-ui;
-  --font-2: "Jaro", system-ui;
-
+  
+  /* Accents */
   --green: mediumseagreen;
   --blue: dodgerblue;
   --orange: orange;
-  --crimson:crimson;
-  --purple:mediumslateblue;
+  --crimson: crimson;
+  --purple: mediumslateblue;
   --pink: #FE34B9;
+
+  /* Gradients & Borders */
+  --gradient: linear-gradient(270deg, var(--primary-color) 20%, #FF26B9 99.99%, #FE34B9 100%);
+  --border: #eee;
+  --border-focus: #ddd;
+  --shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+
+  /* Fonts */
+  --font-1: "Outfit", system-ui;
+  --font-2: "Jaro", system-ui;
+  /* Added Poppins as font-3 if you need it later since you imported it */
+  --font-3: "Poppins", sans-serif; 
 }
 
 .dark {
@@ -49,18 +64,19 @@
   --font-2: "Jaro", system-ui;
 }
 
+/* Selection Styles */
 *::selection {
   background-color: var(--primary-color);
   color: var(--white);
 }
 
+/* Scrollbar Styles */
 *::-webkit-scrollbar {
   height: .5rem;
   width: 4px;
 }
 
 *::-webkit-scrollbar-track {
-  background-color: var(--secondary-color);
   background-color: transparent;
 }
 
@@ -69,11 +85,16 @@
   border-radius: 0;
 }
 
+/* HTML & Body */
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: 10rem;
   color: var(--font-color);
+}
+
+body {
+  background-color: var(--light-bg);
 }
 
 i,
@@ -92,20 +113,19 @@ button:active {
   filter: brightness(120%);
 }
 
-body {
-  background-color: var(--light-bg);
-}
-
+/* Layout Utilities */
 main {
   width: min(90%, 1024px);
   margin: auto;
 }
 
-section{
+section {
   width: min(100%, 700px);
   margin: auto;
 }
-.btn{
+
+/* Custom Button Class */
+.btn {
   width: min(100%, 200px);
   margin: 3em auto;
   background-color: var(--primary-color);
@@ -115,28 +135,31 @@ section{
   border-radius: 50px;
   box-shadow: 0 5px 10px rgba(0,0,0,.05);
 }
-.main-container{
+
+.main-container {
   background-color: var(--secondary-color);
   min-height: 100dvh;
   padding-bottom: 5em;
   position: relative;
 }
 
-#panel .nav-link div{
+/* Navigation Panel Styles */
+#panel .nav-link div {
   color: var(--font-color-light);
 }
-#panel .nav-link:hover div{
-color: var(--font-color);
-filter: drop-shadow(0 0 10px #fff);
-}
-#panel .nav-link.active:hover div{
-color: var(--white);
-filter: unset;
+
+#panel .nav-link:hover div {
+  color: var(--font-color);
+  filter: drop-shadow(0 0 10px #fff);
 }
 
-#panel .nav-link.active, #panel .nav-link.active div{
+#panel .nav-link.active:hover div {
+  color: var(--white);
+  filter: unset;
+}
+
+#panel .nav-link.active, 
+#panel .nav-link.active div {
   background-color: var(--primary-color);
   color: var(--white);
 }
-
-
