@@ -1,4 +1,4 @@
-import Verify from "../Components/Authentication/Verify"
+import Verify from "../../Components/Authentication/Verify"
 
 const VerifyPage = () => {
     document.title = "QuestPay | Verify"
