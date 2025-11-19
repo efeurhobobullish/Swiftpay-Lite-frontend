@@ -3,7 +3,7 @@ import Cards from "../..Components/User/Cards";
 import Services from "../../Components/User/Services";
 import Header from "../../Components/User/Header";
 import Layout from "../../Components/User/Layout";
-const Dashboard = () => {
+const DashboardPage = () => {
   document.title = "Dashboard"
   const [showBalance, setShowBalance] = useState(false);
 
@@ -25,4 +25,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPage;
