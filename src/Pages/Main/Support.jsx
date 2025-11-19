@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Phone, MessageCircle, Clock, ArrowLeft } from "lucide-react";
 
-const Support = () => {
+const SupportPage = () => {
   const [activeTab, setActiveTab] = useState("faq");
   const [expandedFaq, setExpandedFaq] = useState(null);
 
@@ -404,4 +404,4 @@ const Support = () => {
   );
 };
 
-export default Support;
+export default SupportPage;
