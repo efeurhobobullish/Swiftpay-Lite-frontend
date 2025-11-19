@@ -3,7 +3,7 @@ import Layout from "../../Components/User/Layout"
 import ProfileCard from "../../Components/User/ProfileCard"
 import SettingsOption from "../../Components/User/SettingsOption"
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <Layout>
       <Heading title="Profile" />
@@ -13,4 +13,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfilePage;
