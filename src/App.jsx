@@ -3,62 +3,46 @@ import { lazy, Suspense } from "react";
 import ThemeContextProvider from "./Context/ThemeContextProvider";
 import NotFound from "./Pages/NotFound";
 
-// --- Lazy Load Components ---
-
-// Onboarding & Auth
 const Onboarding = lazy(() => import("./Pages/Onboarding"));
-const LoginPage = lazy(() => import("./Pages/Auth/LoginPage"));
-const SignupPage = lazy(() => import("./Pages/Auth/SignupPage"));
-const VerifyPage = lazy(() => import("./Pages/Auth/VerifyPage"));
+const Login = lazy(() => import("./Pages/Auth/Login"));
+const Signup = lazy(() => import("./Pages/Auth/Signup"));
+const Verify = lazy(() => import("./Pages/Auth/Verify"));
 
-// Main Folder Imports (Dashboard, Wallet, Profile)
 const Dashboard = lazy(() => import("./Pages/Main/Dashboard"));
 const Wallet = lazy(() => import("./Pages/Main/Wallet"));
-const FundWalletPage = lazy(() => import("./Pages/Main/FundWalletPage"));
-const ProfilePage = lazy(() => import("./Pages/Main/ProfilePage"));
-const UpdateProfilePage = lazy(() => import("./Pages/Main/UpdateProfilePage"));
-const UpdatePasswordPage = lazy(() => import("./Pages/Main/UpdatePasswordPage"));
-const ChangePinPage = lazy(() => import("./Pages/Main/ChangePinPage"));
+const FundWallet = lazy(() => import("./Pages/Main/FundWallet"));
+const Profile = lazy(() => import("./Pages/Main/Profile"));
+const UpdateProfile = lazy(() => import("./Pages/Main/UpdateProfile"));
+const UpdatePassword = lazy(() => import("./Pages/Main/UpdatePassword"));
+const ChangePin = lazy(() => import("./Pages/Main/ChangePin"));
 
-// Services Folder Imports
-const ServicePage = lazy(() => import("./Pages/Services/ServicePage"));
-const AirtimePage = lazy(() => import("./Pages/Services/AirtimePage"));
-const DataPage = lazy(() => import("./Pages/Services/DataPage"));
-const CablePage = lazy(() => import("./Pages/Services/CablePage"));
-const PowerPage = lazy(() => import("./Pages/Services/PowerPage"));
+const Service = lazy(() => import("./Pages/Services/Service"));
+const Airtime = lazy(() => import("./Pages/Services/Airtime"));
+const Data = lazy(() => import("./Pages/Services/Data"));
+const Cable = lazy(() => import("./Pages/Services/Cable"));
+const Power = lazy(() => import("./Pages/Services/Power"));
 
 const App = () => {
   return (
     <ThemeContextProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          {/* Onboarding - Root Path */}
           <Route path="/" element={<Onboarding />} />
-          
-          {/* Auth Routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/verify" element={<VerifyPage />} />
-          
-          {/* --- Main Folder Routes --- */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verify" element={<Verify />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/wallet" element={<Wallet />} />
-          <Route path="/fund-wallet" element={<FundWalletPage />} /> {/* Changed path to avoid conflict */}
-          
-          {/* Profile Routes */}
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/update-profile" element={<UpdateProfilePage />} />
-          <Route path="/update-password" element={<UpdatePasswordPage />} />
-          <Route path="/change-pin" element={<ChangePinPage />} />
-
-          {/* --- Services Folder Routes --- */}
-          <Route path="/services" element={<ServicePage />} />
-          <Route path="/airtime" element={<AirtimePage />} />
-          <Route path="/data" element={<DataPage />} />
-          <Route path="/cable" element={<CablePage />} />
-          <Route path="/electricity" element={<PowerPage />} />
-          
-          {/* Fallback Route */}
+          <Route path="/fund-wallet" element={<FundWallet />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/update-profile" element={<UpdateProfile />} />
+          <Route path="/update-password" element={<UpdatePassword />} />
+          <Route path="/change-pin" element={<ChangePin />} />
+          <Route path="/services" element={<Service />} />
+          <Route path="/airtime" element={<Airtime />} />
+          <Route path="/data" element={<Data />} />
+          <Route path="/cable" element={<Cable />} />
+          <Route path="/electricity" element={<Power />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
