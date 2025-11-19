@@ -1,0 +1,377 @@
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, Clock, Trash2, CheckCircle, XCircle, AlertCircle, Info, CreditCard, Shield } from "lucide-react";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
+import Header from "../../Components/User/Header";
+import Layout from "../../Components/User/Layout";
+
+const NotificationDetails = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [notification, setNotification] = useState(null);
+
+  // Mock data - replace with actual API call
+  const notificationsData = [
+    {
+      id: 1,
+      title: "Transaction Successful",
+      message: "Your airtime purchase of ₦1,500 for 08012345678 was successfully processed. The recipient should receive the airtime within 2 minutes. If there's any issue, please contact our support team.",
+      type: "success",
+      date: "2024-01-15",
+      time: "14:30",
+      read: false,
+      category: "transaction",
+      details: {
+        amount: "₦1,500",
+        type: "Airtime Purchase",
+        recipient: "08012345678",
+        network: "MTN",
+        reference: "TXN-7845-2024",
+        status: "Completed"
+      }
+    },
+    {
+      id: 2,
+      title: "Wallet Funded",
+      message: "Your QuestPay wallet has been successfully credited with ₦10,000 via bank transfer. The funds are now available for your transactions.",
+      type: "credit",
+      date: "2024-01-15",
+      time: "09:15",
+      read: true,
+      category: "wallet",
+      details: {
+        amount: "₦10,000",
+        method: "Bank Transfer",
+        bank: "GTBank",
+        reference: "WF-5621-2024",
+        status: "Successful"
+      }
+    }
+  ];
+
+  useEffect(() => {
+    // Simulate API call
+    const foundNotification = notificationsData.find(notif => notif.id === parseInt(id));
+    setNotification(foundNotification);
+    
+    // Mark as read
+    if (foundNotification && !foundNotification.read) {
+      // In real app, call API to mark as read
+      console.log("Marking notification as read:", id);
+    }
+  }, [id]);
+
+  const deleteNotification = () => {
+    // In real app, call API to delete notification
+    console.log("Deleting notification:", id);
+    toast.success("Notification deleted");
+    navigate("/notifications");
+  };
+
+  const getNotificationIcon = (type) => {
+    switch (type) {
+      case "success":
+        return <CheckCircle size={48} className="text-green-500" />;
+      case "error":
+        return <XCircle size={48} className="text-crimson" />;
+      case "warning":
+        return <AlertCircle size={48} className="text-orange-500" />;
+      case "info":
+        return <Info size={48} className="text-blue-500" />;
+      case "credit":
+        return <CreditCard size={48} className="text-green-500" />;
+      default:
+        return <CheckCircle size={48} className="text-primary-color" />;
+    }
+  };
+
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case "transaction":
+        return <CreditCard size={16} />;
+      case "wallet":
+        return <CreditCard size={16} />;
+      case "security":
+        return <Shield size={16} />;
+      default:
+        return <Info size={16} />;
+    }
+  };
+
+  const formatDateTime = (dateString, timeString) => {
+    const date = new Date(dateString);
+    return `${date.toLocaleDateString('en-US', { 
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })} at ${timeString}`;
+  };
+
+  if (!notification) {
+    return (
+      <Layout>
+        <Header 
+          title="Notification Details" 
+          showBackButton={true}
+          backUrl="/notifications"
+        />
+        <div className="loading-state">
+          <Info size={48} />
+          <h3>Notification not found</h3>
+          <Link to="/notifications" className="back-link">
+            Back to notifications
+          </Link>
+        </div>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <Header 
+        title="Notification Details" 
+        showBackButton={true}
+        backUrl="/notifications"
+        actionButton={{
+          icon: <Trash2 size={20} />,
+          onClick: deleteNotification,
+          label: "Delete"
+        }}
+      />
+      
+      <div className="notification-details-content">
+        <div className="notification-card">
+          <div className="notification-header-details">
+            <div className="notification-icon-large">
+              {getNotificationIcon(notification.type)}
+            </div>
+            <div className="notification-title-section">
+              <h2>{notification.title}</h2>
+              <div className="notification-meta">
+                <div className="time-info">
+                  <Clock size={16} />
+                  {formatDateTime(notification.date, notification.time)}
+                </div>
+                <span className={`notification-category ${notification.category}`}>
+                  {getCategoryIcon(notification.category)}
+                  {notification.category}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="notification-body">
+            <p className="notification-message">{notification.message}</p>
+            
+            {notification.details && (
+              <div className="details-section">
+                <h3>Transaction Details</h3>
+                <div className="details-grid">
+                  {Object.entries(notification.details).map(([key, value]) => (
+                    <div key={key} className="detail-item">
+                      <span className="detail-label">
+                        {key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}:
+                      </span>
+                      <span className={`detail-value ${key === 'status' ? notification.details.status.toLowerCase() : ''}`}>
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="notification-actions">
+            <Link to="/notifications" className="back-to-list">
+              Back to notifications
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .notification-details-content {
+          padding: 1rem;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .notification-card {
+          background: var(--white);
+          border-radius: 16px;
+          padding: 2rem;
+          box-shadow: var(--shadow);
+        }
+
+        .notification-header-details {
+          display: flex;
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .notification-icon-large {
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+        }
+
+        .notification-title-section {
+          flex: 1;
+        }
+
+        .notification-title-section h2 {
+          font-size: 1.5rem;
+          color: var(--font-color);
+          margin-bottom: 1rem;
+          font-weight: 600;
+        }
+
+        .notification-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .time-info {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: var(--font-color-light);
+          font-size: 0.875rem;
+        }
+
+        .notification-category {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          background: var(--primary-color);
+          color: var(--white);
+          font-size: 0.75rem;
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+
+        .notification-body {
+          margin-bottom: 2rem;
+        }
+
+        .notification-message {
+          color: var(--font-color);
+          line-height: 1.6;
+          margin-bottom: 2rem;
+          font-size: 1rem;
+        }
+
+        .details-section h3 {
+          font-size: 1.125rem;
+          color: var(--font-color);
+          margin-bottom: 1rem;
+          font-weight: 600;
+        }
+
+        .details-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .detail-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          background: var(--medium-bg);
+          border-radius: 8px;
+        }
+
+        .detail-label {
+          color: var(--font-color-light);
+          font-weight: 500;
+        }
+
+        .detail-value {
+          color: var(--font-color);
+          font-weight: 600;
+        }
+
+        .detail-value.completed,
+        .detail-value.successful {
+          color: var(--green);
+        }
+
+        .notification-actions {
+          text-align: center;
+        }
+
+        .back-to-list {
+          color: var(--primary-color);
+          text-decoration: none;
+          font-weight: 500;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+          transition: background 0.3s ease;
+        }
+
+        .back-to-list:hover {
+          background: var(--medium-bg);
+        }
+
+        .loading-state {
+          text-align: center;
+          padding: 4rem 2rem;
+          color: var(--font-color-light);
+        }
+
+        .loading-state h3 {
+          margin: 1rem 0 0.5rem;
+          color: var(--font-color);
+        }
+
+        .back-link {
+          color: var(--primary-color);
+          text-decoration: none;
+          font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+          .notification-header-details {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .notification-meta {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+          }
+
+          .detail-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .notification-details-content {
+            padding: 0.5rem;
+          }
+
+          .notification-card {
+            padding: 1.5rem;
+          }
+        }
+      `}</style>
+    </Layout>
+  );
+};
+
+export default NotificationDetails;
