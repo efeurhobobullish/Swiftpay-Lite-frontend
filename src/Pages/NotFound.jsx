@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from '../Styles/notfound.module.css'
 import img from '../assets/lost.svg'
-const NotFoundPage; = () => {
+const NotFoundPage = () => {
     document.title = "404: Page not found"
   return (
       <>
@@ -21,4 +21,4 @@ const NotFoundPage; = () => {
   )
 }
 
-export default NotFoundPage
+export default NotFoundPage;
