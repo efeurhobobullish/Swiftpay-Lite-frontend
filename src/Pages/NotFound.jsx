@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from '../Styles/notfound.module.css'
 import img from '../assets/lost.svg'
-const NotFound = () => {
+const NotFoundPage; = () => {
     document.title = "404: Page not found"
   return (
       <>
@@ -9,7 +9,7 @@ const NotFound = () => {
               <img src={img} height={230} alt="Not found svg" />
               <h1>404</h1>
               <br />
-              <p>Hold on chief...✋ <br />Developer never cook this side yet!!!</p>
+              <p>Hold on chief...✋ <br /> Empire Tech never cook this side yet!!!</p>
 
               <Link to="/dashboard">
                   <button className={styles.btn}>
@@ -21,4 +21,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default NotFoundPage
