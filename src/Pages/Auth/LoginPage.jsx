@@ -1,7 +1,7 @@
 import Login from "../../Components/Authentication/Login"
 
 const LoginPage = () => {
-    document.title = "SwiftPay | Login"
+    document.title = "QuestPay | Login"
   return (
       <>
           <Login/>
