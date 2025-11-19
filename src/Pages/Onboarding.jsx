@@ -11,7 +11,7 @@ const Onboarding = () => {
     const checkServices = async () => {
       setIsLoading(true);
       try {
-        // Simulate API Check
+        // Simulate API Check (2 seconds)
         await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (error) {
         console.error(error);
@@ -23,71 +23,70 @@ const Onboarding = () => {
   }, []);
 
   return (
-    // Main Container: Full Height, Gradient Background
-    <div className="h-[100dvh] w-full bg-[var(--gradient)] flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="h-[100dvh] w-full bg-[var(--gradient)] flex flex-col items-center justify-center p-6 relative overflow-hidden text-white">
       
       <AnimatePresence mode="wait">
         {isLoading ? (
-          // --- Loading State ---
+          /* --- LOADING STATE --- */
           <motion.div 
             key="loader"
             exit={{ opacity: 0 }}
             className="absolute inset-0 flex flex-col items-center justify-center gap-4"
           >
-            {/* Pure Tailwind CSS Spinner */}
+            {/* Simple CSS Spinner (No extra icons needed) */}
             <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-            <p className="text-white/90 text-sm font-medium animate-pulse">
+            <p className="text-sm font-medium animate-pulse opacity-90">
               Checking Services...
             </p>
           </motion.div>
         ) : (
-          // --- Main Content State ---
+          /* --- CONTENT STATE --- */
           <motion.div
             key="content"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col justify-between w-full max-w-[480px] h-full pt-16 pb-8"
+            className="flex flex-col justify-between w-full max-w-[480px] h-full pt-16 pb-6"
           >
-            {/* UPPER SECTION: Text & Buttons */}
-            <div className="flex flex-col items-center w-full">
+            {/* TOP SECTION */}
+            <div className="flex flex-col items-center text-center w-full">
               
-              {/* Text Group */}
-              <div className="text-center space-y-4">
-                <h1 className="text-4xl md:text-5xl text-white font-light leading-tight">
+              {/* Headings */}
+              <div className="space-y-4 mb-8">
+                <h1 className="text-4xl md:text-5xl font-light leading-[1.1]">
                   Quick, simple <br />
                   bill payments
                 </h1>
-                <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                <p className="opacity-80 text-sm md:text-base leading-relaxed">
                   Buy airtime, data, cable tv, and more at affordable rates.
                 </p>
               </div>
 
               {/* Divider Line */}
-              <div className="w-full h-px bg-white/20 my-8"></div>
+              <div className="w-full h-px bg-white/20 mb-8"></div>
 
-              {/* Buttons Group */}
-              <div className="flex flex-col w-full gap-4">
+              {/* Buttons */}
+              <div className="w-full space-y-4">
                 <Link 
                   to="/signup" 
-                  className="bg-white text-[var(--primary)] font-bold py-4 px-8 rounded-full w-full text-center shadow-lg active:scale-95 transition-transform"
+                  className="block w-full bg-white text-[var(--primary-color)] font-bold py-4 rounded-full shadow-lg active:scale-95 transition-transform hover:brightness-95"
                 >
                   Create an account
                 </Link>
                 <Link 
                   to="/login" 
-                  className="text-white text-sm underline underline-offset-4 opacity-90 hover:opacity-100 text-center"
+                  className="block w-full text-sm underline underline-offset-4 opacity-90 hover:opacity-100"
                 >
                   I already have an account
                 </Link>
               </div>
             </div>
 
-            {/* BOTTOM SECTION: Logo */}
-            <div className="text-center text-white mt-auto">
-              <h2 className="text-3xl font-black tracking-tight">QuestPay</h2>
-              <span className="text-xs opacity-80 font-light tracking-widest">
-                LITE VERSION
+            {/* BOTTOM SECTION: LOGO */}
+            <div className="text-center mt-auto">
+              <h2 className="text-3xl font-[var(--font-2)] tracking-wide mb-1">QuestPay</h2>
+              <span className="text-xs opacity-80 font-light tracking-[0.2em] uppercase">
+                Lite Version
               </span>
             </div>
 
