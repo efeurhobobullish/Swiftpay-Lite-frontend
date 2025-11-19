@@ -1,12 +1,16 @@
-import Signup from "../../Components/Authentication/Signup"
+import { useEffect } from "react";
+import Signup from "../../Components/Authentication/Signup"; // The UI Component
 
-const Signup = () => {
-    document.title = "QuestPay | Create New account"
+const SignupPage = () => {
+  useEffect(() => {
+    document.title = "QuestPay | Create New Account";
+  }, []);
+
   return (
-      <>
-      <Signup/>
-      </>
-  )
-}
+    <>
+      <Signup />
+    </>
+  );
+};
 
-export default Signup
+export default SignupPage;
