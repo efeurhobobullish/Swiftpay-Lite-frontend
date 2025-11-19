@@ -1,144 +1,141 @@
 /* src/Styles/onboarding.module.css */
 
 .container {
-  min-height: 100dvh;
-  background: var(--gradient);
+  height: 100dvh; /* Use 100dvh for mobile browsers */
+  width: 100%;
+  background: var(--gradient, linear-gradient(135deg, #ff00cc 0%, #333399 100%)); /* adjusted to match your pink/purple img */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   padding: 2rem;
   position: relative;
   overflow: hidden;
 }
 
-.main {
-  width: min(90%, 480px);
-  height: 100%;
+/* This centers the loader */
+.loadingWrapper {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-}
-
-.brandLogo {
-  position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: var(--white);
-  z-index: 10;
-}
-
-.brandLogo h2 {
-  font-family: var(--font-2);
-  font-size: 2rem;
-  margin-bottom: 0.25rem;
-}
-
-.brandLogo span {
-  font-size: 0.875rem;
-  opacity: 0.8;
-}
-
-.loadingContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  align_items: center;
+  justify-content: center;
   gap: 1rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+
+/* This wrapper handles the layout: Content Top, Logo Bottom */
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content apart */
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-top: 4rem; /* Push text down a bit from very top */
+  padding-bottom: 2rem;
 }
 
-.spinner {
-  width: 30px;
-  height: 30px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top: 3px solid var(--white);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.loadingText {
-  color: var(--white);
-  opacity: 0.8;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.contentContainer {
+/* --- Top Section (Text & Buttons) --- */
+.upperSection {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  position: absolute;
-  bottom: 4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  text-align: right; /* Based on screenshot, text looks aligned to right or center. keeping center for safety */
+  text-align: center; 
 }
 
 .textSection {
-  text-align: center;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .title {
-  font-size: 2.5rem;
-  color: var(--white);
-  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--white, #fff);
+  font-weight: 600;
   line-height: 1.2;
-  margin-bottom: 1rem;
 }
 
 .subtitle {
-  color: var(--white);
-  opacity: 0.8;
-  font-size: 0.95rem;
+  color: var(--white, #fff);
+  opacity: 0.9;
+  font-size: 0.9rem;
   line-height: 1.5;
+}
+
+/* The thin line in your screenshot */
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  margin: 0.5rem 0;
 }
 
 .actionsSection {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  align-items: center;
+  gap: 1.5rem;
   width: 100%;
 }
 
 .primaryBtn {
-  background: var(--white);
-  color: var(--primary);
+  background: var(--white, #fff);
+  color: var(--primary, #6B5BFF);
   font-weight: 700;
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-radius: 50px;
   border: none;
   width: 100%;
   text-align: center;
-  font-family: var(--font-1);
-  transition: transform 0.2s ease, filter 0.2s ease;
+  font-family: inherit;
   text-decoration: none;
   display: block;
-}
-
-.primaryBtn:active {
-  transform: scale(0.98);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .textLink {
-  color: var(--white);
+  color: var(--white, #fff);
   text-decoration: none;
   font-size: 0.9rem;
+  text-align: center;
   opacity: 0.9;
-  transition: opacity 0.2s;
 }
 
-.textLink:hover {
-  opacity: 1;
-  text-decoration: underline;
+/* --- Bottom Section (Logo) --- */
+.brandLogo {
+  text-align: center;
+  color: var(--white, #fff);
+  margin-top: auto; /* Safety to push to bottom */
+}
+
+.brandLogo h2 {
+  font-family: 'Impact', sans-serif; /* Using a thicker font to match screenshot */
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+  letter-spacing: 1px;
+}
+
+.brandLogo span {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* --- Spinner --- */
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid var(--white, #fff);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loadingText {
+  color: var(--white, #fff);
+  opacity: 0.8;
+  font-size: 0.9rem;
 }
 
 @keyframes spin {
