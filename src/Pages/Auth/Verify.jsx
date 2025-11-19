@@ -1,12 +1,16 @@
-import Verify from "../../Components/Authentication/Verify"
+import { useEffect } from "react";
+import Verify from "../../Components/Authentication/Verify";
 
 const VerifyPage = () => {
-    document.title = "QuestPay | Verify"
+  useEffect(() => {
+    document.title = "QuestPay | Verify";
+  }, []);
+
   return (
       <>
           <Verify/>
       </>
-  )
-}
+  );
+};
 
-export default VerifyPage
+export default VerifyPage;
