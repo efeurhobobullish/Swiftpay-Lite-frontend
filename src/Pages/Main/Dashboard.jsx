@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Cards from "../..Components/User/Cards";
+import Cards from "../../Components/User/Cards";
 import Services from "../../Components/User/Services";
 import Header from "../../Components/User/Header";
 import Layout from "../../Components/User/Layout";
