@@ -1,12 +1,15 @@
-import Login from "../../Components/Authentication/Login"
+import { useEffect } from "react";
+import Login from "../../Components/Authentication/Login"; // Assuming this is your UI component
 
 const LoginPage = () => {
-    document.title = "QuestPay | Login"
+  useEffect(() => {
+    document.title = "QuestPay | Login";
+  }, []);
   return (
-      <>
-          <Login/>
-      </>
-  )
-}
+    <>
+      <Login />
+    </>
+  );
+};
 
-export default LoginPage
+export default LoginPage;
