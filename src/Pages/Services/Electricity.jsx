@@ -2,7 +2,7 @@ import Heading from "../../Components/User/Heading";
 import Layout from "../../Components/User/Layout";
 import PowerForm from "../../Components/User/PowerForm";
 import styles from "../../Styles/power.module.css";
-const PowerPage = () => {
+const ElectricityPage = () => {
   document.title = "QuestPay | Electricity";
   return (
     <>
@@ -16,4 +16,4 @@ const PowerPage = () => {
   );
 };
 
-export default PowerPage;
+export default ElectricityPage;
