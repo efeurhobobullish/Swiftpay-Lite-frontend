@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Eye, EyeOff, Plus, TrendingUp, Clock, CheckCircle, XCircle } from "lucide-react";
 
-const Wallet = () => {
+const WalletPage = () => {
   const [balanceVisible, setBalanceVisible] = useState(true);
   const [activeTab, setActiveTab] = useState("transactions");
 
@@ -586,4 +586,4 @@ const Wallet = () => {
   );
 };
 
-export default Wallet;
+export default WalletPage;
