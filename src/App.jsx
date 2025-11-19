@@ -16,7 +16,7 @@ const UpdateProfilePage = lazy(() => import("./Pages/Main/UpdateProfile"));
 const UpdatePasswordPage = lazy(() => import("./Pages/Main/UpdatePassword"));
 const ChangePinPage = lazy(() => import("./Pages/Main/ChangePin"));
 
-const ServicePage = lazy(() => import("./Pages/Services/Service"));
+const ServicePage = lazy(() => import("./Pages/Main/Services"));
 const AirtimePage = lazy(() => import("./Pages/Services/Airtime"));
 const DataPage = lazy(() => import("./Pages/Services/Data"));
 const CablePage = lazy(() => import("./Pages/Services/Cable"));
