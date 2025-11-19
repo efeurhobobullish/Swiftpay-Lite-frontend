@@ -4,8 +4,9 @@ import ThemeContextProvider from "./Context/ThemeContextProvider";
 import NotFound from "./Pages/NotFound";
 
 // Lazy load components
-const LoginPage = lazy(() => import("./Pages/LoginPage"));
-const SignupPage = lazy(() => import("./Pages/SignupPage"));
+const LoginPage = lazy(() => import("./Pages/Auth/LoginPage"));
+const SignupPage = lazy(() => import("./Pages/Auth/SignupPage"));
+const VerifyPage = lazy(() => import("./Pages/Auth/VerifyPage"));
 const Dashboard = lazy(() => import("./Pages/Dashboard"));
 const ServicePage = lazy(() => import("./Pages/ServicePage"));
 const AirtimePage = lazy(() => import("./Pages/AirtimePage"));
@@ -18,25 +19,47 @@ const UpdateProfilePage = lazy(() => import("./Pages/UpdateProfilePage"));
 const UpdatePasswordPage = lazy(() => import("./Pages/UpdatePasswordPage"));
 const ChangePinPage = lazy(() => import("./Pages/ChangePinPage"));
 
+// Route configuration for better organization
+const routes = [
+  // Auth Routes
+  { path: "/", element: <LoginPage /> },
+  { path: "/login", element: <LoginPage /> },
+  { path: "/signup", element: <SignupPage /> },
+  { path: "/verify", element: <VerifyPage /> },
+  
+  // Main App Routes
+  { path: "/dashboard", element: <Dashboard /> },
+  { path: "/services", element: <ServicePage /> },
+  
+  // Service Routes
+  { path: "/airtime", element: <AirtimePage /> },
+  { path: "/data", element: <DataPage /> },
+  { path: "/cable", element: <CablePage /> },
+  { path: "/electricity", element: <PowerPage /> },
+  
+  // Wallet & Profile Routes
+  { path: "/wallet", element: <FundWalletPage /> },
+  { path: "/profile", element: <ProfilePage /> },
+  { path: "/update-profile", element: <UpdateProfilePage /> },
+  { path: "/update-password", element: <UpdatePasswordPage /> },
+  { path: "/change-pin", element: <ChangePinPage /> },
+  
+  // Fallback Route
+  { path: "*", element: <NotFound /> }
+];
+
 const App = () => {
   return (
     <ThemeContextProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/services" element={<ServicePage />} />
-          <Route path="/airtime" element={<AirtimePage />} />
-          <Route path="/data" element={<DataPage />} />
-          <Route path="/cable" element={<CablePage />} />
-          <Route path="/electricity" element={<PowerPage />} />
-          <Route path="/wallet" element={<FundWalletPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/update-profile" element={<UpdateProfilePage />} />
-          <Route path="/update-password" element={<UpdatePasswordPage />} />
-          <Route path="/change-pin" element={<ChangePinPage />} />
-          <Route path="*" element={<NotFound />} />
+          {routes.map((route, index) => (
+            <Route 
+              key={index} 
+              path={route.path} 
+              element={route.element} 
+            />
+          ))}
         </Routes>
       </Suspense>
     </ThemeContextProvider>
