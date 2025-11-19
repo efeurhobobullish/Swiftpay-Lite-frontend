@@ -3,7 +3,7 @@ import Heading from "../../Components/User/Heading";
 import { services } from "../../constants/data";
 import styles from "../../Styles/services.module.css";
 import Layout from "../../Components/User/Layout";
-const Services = () => {
+const ServicePage = () => {
   document.title = "QuestPay | Services";
   return (
     <>
@@ -31,4 +31,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicePage;
