@@ -1,6 +1,6 @@
 import Signup from "../../Components/Authentication/Signup"
 
-const SignupPage = () => {
+const Signup = () => {
     document.title = "QuestPay | Create New account"
   return (
       <>
@@ -9,4 +9,4 @@ const SignupPage = () => {
   )
 }
 
-export default SignupPage
+export default Signup
