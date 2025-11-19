@@ -20,7 +20,7 @@ const ServicePage = lazy(() => import("./Pages/Services/Service"));
 const AirtimePage = lazy(() => import("./Pages/Services/Airtime"));
 const DataPage = lazy(() => import("./Pages/Services/Data"));
 const CablePage = lazy(() => import("./Pages/Services/Cable"));
-const PowerPage = lazy(() => import("./Pages/Services/Power"));
+const ElectricityPage = lazy(() => import("./Pages/Services/Electricity"));
 
 const App = () => {
   return (
@@ -42,7 +42,7 @@ const App = () => {
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/data" element={<DataPage />} />
           <Route path="/cable" element={<CablePage />} />
-          <Route path="/electricity" element={<PowerPage />} />
+          <Route path="/electricity" element={<ElectricityPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
