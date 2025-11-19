@@ -4,6 +4,7 @@ import ThemeContextProvider from "./Context/ThemeContextProvider";
 import NotFound from "./Pages/NotFound";
 
 // Lazy load components
+const Onboarding = lazy(() => import("./Pages/Onboarding"));
 const LoginPage = lazy(() => import("./Pages/Auth/LoginPage"));
 const SignupPage = lazy(() => import("./Pages/Auth/SignupPage"));
 const VerifyPage = lazy(() => import("./Pages/Auth/VerifyPage"));
@@ -24,6 +25,8 @@ const App = () => {
     <ThemeContextProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          {/* Onboarding */}
+          <Route path="/" element={<Onboarding />} />
           {/* Auth Routes */}
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
