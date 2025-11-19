@@ -8,6 +8,8 @@ const Onboarding = lazy(() => import("./Pages/Onboarding"));
 const LoginPage = lazy(() => import("./Pages/Auth/LoginPage"));
 const SignupPage = lazy(() => import("./Pages/Auth/SignupPage"));
 const VerifyPage = lazy(() => import("./Pages/Auth/VerifyPage"));
+// Add to your lazy imports
+const Wallet = lazy(() => import("./Pages/Main/Wallet"));
 const Dashboard = lazy(() => import("./Pages/Dashboard"));
 const ServicePage = lazy(() => import("./Pages/ServicePage"));
 const AirtimePage = lazy(() => import("./Pages/AirtimePage"));
@@ -36,7 +38,7 @@ const App = () => {
           {/* Main App Routes */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/services" element={<ServicePage />} />
-          
+          <Route path="/wallet" element={<Wallet />} />
           {/* Service Routes */}
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/data" element={<DataPage />} />
