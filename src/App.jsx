@@ -8,6 +8,8 @@ const LoginPage = lazy(() => import("./Pages/Auth/Login"));
 const SignupPage = lazy(() => import("./Pages/Auth/Signup"));
 const VerifyPage = lazy(() => import("./Pages/Auth/Verify"));
 
+const SupportPage = lazy(() => import("./Pages/Main/Support"));
+
 const Dashboard = lazy(() => import("./Pages/Main/Dashboard"));
 const Wallet = lazy(() => import("./Pages/Main/Wallet"));
 const FundWalletPage = lazy(() => import("./Pages/Main/FundWallet"));
@@ -38,6 +40,7 @@ const App = () => {
           <Route path="/update-profile" element={<UpdateProfilePage />} />
           <Route path="/update-password" element={<UpdatePasswordPage />} />
           <Route path="/change-pin" element={<ChangePinPage />} />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="/services" element={<ServicePage />} />
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/data" element={<DataPage />} />
