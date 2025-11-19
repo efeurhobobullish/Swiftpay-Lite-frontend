@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import Header from "../../Components/User/Header";
 import Layout from "../../Components/User/Layout";
 
-const Notifications = () => {
+const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -530,4 +530,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default NotificationsPage;
