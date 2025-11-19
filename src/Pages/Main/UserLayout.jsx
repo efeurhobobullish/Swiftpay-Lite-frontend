@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import Panel from "../Components/User/Panel";
+import Panel from "../../Components/User/Panel";
 
 const UserLayout = () => {
   return (
