@@ -3,11 +3,11 @@
 .container {
   height: 100dvh;
   width: 100vw;
-  /* Converted Tailwind: bg-gradient-to-b from-violet-900 to-pink-400 */
-  background: linear-gradient(to bottom, #4c1d95, #f472b6);
+  /* REVERTED: Back to your original gradient variable */
+  background: var(--gradient); 
   display: flex;
   flex-direction: column;
-  padding: 3rem 2rem; /* py-12 */
+  padding: 3rem 2rem; 
   position: relative;
   overflow: hidden;
 }
@@ -24,7 +24,7 @@
 /* --- Spinner Section --- */
 .loadingWrapper {
   position: absolute;
-  bottom: 3.75rem; /* bottom-15 */
+  bottom: 3.75rem; 
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -38,20 +38,21 @@
 
 .spinner {
   animation: spin 1s linear infinite;
-  color: white;
+  color: var(--white, #fff);
 }
 
 .loadingText {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem; /* text-sm */
+  color: var(--white, #fff);
+  opacity: 0.8;
+  font-size: 0.875rem; 
   font-weight: 500;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* --- Content Section --- */
 .contentWrapper {
-  position: absolute; /* Matches your snippet structure */
-  top: 2.5rem; /* Start from top like screenshot */
+  position: absolute; 
+  top: 4rem; /* Start from top */
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -71,14 +72,15 @@
 }
 
 .title {
-  font-size: 2.25rem; /* text-4xl */
-  color: white;
-  font-weight: 300; /* font-light */
+  font-size: 2.25rem; 
+  color: var(--white, #fff);
+  font-weight: 300; 
   line-height: 1.2;
 }
 
 .subtitle {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--white, #fff);
+  opacity: 0.8;
   font-size: 0.875rem;
 }
 
@@ -90,33 +92,37 @@
 }
 
 .primaryBtn {
-  background-color: white;
-  color: #333;
+  background-color: var(--white, #fff);
+  color: var(--primary, #6B5BFF); /* Restored to Primary Color text */
   font-weight: 600;
-  padding: 0.75rem 1rem; /* py-3 */
-  border-radius: 9999px; /* rounded-full */
+  padding: 0.75rem 1rem; 
+  border-radius: 9999px; 
   text-decoration: none;
   display: block;
   width: 100%;
-  font-family: serif; /* font-serif from snippet */
+  font-family: serif; 
+  transition: transform 0.2s;
+}
+
+.primaryBtn:active {
+  transform: scale(0.98);
 }
 
 .linkBtn {
-  color: white;
+  color: var(--white, #fff);
   text-decoration: underline;
   text-underline-offset: 2px;
   font-size: 0.9rem;
 }
 
 /* --- Logo Section --- */
-/* I kept this at the bottom to match your screenshot layout */
 .logoWrapper {
   position: absolute;
   bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: white;
+  color: var(--white, #fff);
 }
 
 .logoText {
